@@ -51,10 +51,11 @@ func diff(got, want string) string {
 }
 
 func TestSong(t *testing.T) {
-	var expected = ""
-	for _, test := range testCases {
-		expected += test.expected + "\n"
+	verses = make([]string, 12)
+	for i, test := range testCases {
+		verses[i] = test.expected
 	}
+	expected := strings.Join(verses, "\n")
 	actual := Song()
 	if expected != actual {
 		t.Fatalf("Song() =\n%s\n  want:\n%s\n%s", actual, expected, diff(actual, expected))
